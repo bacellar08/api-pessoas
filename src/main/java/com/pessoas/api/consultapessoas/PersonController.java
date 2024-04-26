@@ -1,9 +1,7 @@
 package com.pessoas.api.consultapessoas;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,20 +9,32 @@ import java.util.List;
 @RestController
 public class PersonController {
 
-    @GetMapping("/pessoas")
-    public List<Pessoa> findAll() {
+    @Autowired
+    PessoaService service;
 
-        return new ArrayList<>();
+    @GetMapping("/pessoas")
+    public List<Pessoa> listaPessoas() {
+        return service.listaPessoas();
     }
 
     @GetMapping("/{id}")
     public Pessoa findById(@PathVariable("id")Long id) {
 
-        return new Pessoa();
+        return service.acharPessoa(id);
     }
 
     @PostMapping
-    public Pessoa novaPessoa(Pessoa pessoa) {
-        return new Pessoa();
+    public Pessoa novaPessoa(@RequestBody Pessoa pessoa) {
+        return service.criarPessoa(pessoa);
+    }
+
+    @PutMapping
+    public Pessoa alterarPessoa(@RequestBody Pessoa pessoa) {
+        return service.alterarPessoa(pessoa);
+    }
+
+    @DeleteMapping("/{id}")
+    public void excluirPessoa(@PathVariable("id")Long id) {
+        service.excluirPessoa(id);
     }
 }
