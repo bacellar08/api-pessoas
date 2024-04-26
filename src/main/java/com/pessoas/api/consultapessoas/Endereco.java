@@ -14,6 +14,7 @@ public class Endereco {
     private Long numero;
     private String cidade;
     private String estado;
+    private boolean principal;
 
 
 }
