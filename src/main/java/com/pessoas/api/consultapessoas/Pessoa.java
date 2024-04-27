@@ -5,11 +5,10 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.ManyToAny;
 
 
 import java.util.Date;
-
+import java.util.List;
 
 
 @Getter
@@ -24,5 +23,7 @@ public class Pessoa {
     private Long id;
     private String nome;
     private Date dataNascimento;
-    private String endereco;
+
+    @OneToMany(mappedBy = "pessoa")
+    private List<Endereco> enderecos;
 }

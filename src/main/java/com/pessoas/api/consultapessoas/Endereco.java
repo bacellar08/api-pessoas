@@ -10,9 +10,9 @@ import lombok.*;
 @NoArgsConstructor
 @Entity
 public class Endereco {
-
-    private String logradouro;
     @Id
+    private Long id;
+    private String logradouro;
     private Long cep;
     private Long numero;
     private String cidade;
@@ -20,6 +20,7 @@ public class Endereco {
     private boolean principal;
 
     @ManyToOne
+    @JoinColumn(name="pessoa_id")
     private Pessoa pessoa;
 
 
