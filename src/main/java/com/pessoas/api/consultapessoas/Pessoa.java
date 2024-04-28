@@ -20,10 +20,10 @@ public class Pessoa {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String nome;
-    private Date dataNascimento;
+    public Long id;
+    public String nome;
+    public Date dataNascimento;
 
-    @OneToMany(mappedBy = "pessoa")
-    private List<Endereco> enderecos;
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    public List<Endereco> enderecos;
 }

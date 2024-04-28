@@ -6,22 +6,23 @@ import lombok.*;
 
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class Endereco {
     @Id
-    private Long id;
-    private String logradouro;
-    private Long cep;
-    private Long numero;
-    private String cidade;
-    private String estado;
-    private boolean principal;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public Long id;
+    public String logradouro;
+    public Long cep;
+    public Long numero;
+    public String cidade;
+    public String estado;
+    public boolean principal;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name="pessoa_id")
-    private Pessoa pessoa;
+    public Pessoa pessoa;
 
 
 }
