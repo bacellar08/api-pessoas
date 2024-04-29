@@ -1,6 +1,7 @@
 package com.pessoas.api.consultapessoas;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -20,8 +21,10 @@ public class Endereco {
     public String estado;
     public boolean principal;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+
+    @ManyToOne
     @JoinColumn(name="pessoa_id")
+    @JsonBackReference
     public Pessoa pessoa;
 
 

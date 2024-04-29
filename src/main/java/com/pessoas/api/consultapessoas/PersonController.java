@@ -1,6 +1,8 @@
 package com.pessoas.api.consultapessoas;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -24,8 +26,16 @@ public class PersonController {
     }
 
     @PostMapping
-    public Pessoa novaPessoa(@RequestBody Pessoa pessoa) {
-        return service.criarPessoa(pessoa);
+    public ResponseEntity<Pessoa> novaPessoa(@RequestBody Pessoa pessoa) {
+
+        for (Endereco endereco : pessoa.getEnderecos()) {
+            endereco.setPessoa(pessoa);
+
+        }
+
+        Pessoa novaPessoa = service.criarPessoa(pessoa);
+        return ResponseEntity.status(HttpStatus.CREATED).body(novaPessoa);
+
     }
 
     @PutMapping

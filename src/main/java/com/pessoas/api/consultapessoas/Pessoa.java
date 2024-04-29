@@ -1,5 +1,7 @@
 package com.pessoas.api.consultapessoas;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,6 +26,7 @@ public class Pessoa {
     public String nome;
     public Date dataNascimento;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "pessoa", cascade = CascadeType.ALL)
+    @JsonManagedReference
     public List<Endereco> enderecos;
 }
