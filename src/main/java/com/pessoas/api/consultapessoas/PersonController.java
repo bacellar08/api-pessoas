@@ -5,7 +5,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -41,6 +40,12 @@ public class PersonController {
     @PutMapping
     public Pessoa alterarPessoa(@RequestBody Pessoa pessoa) {
         return service.alterarPessoa(pessoa);
+    }
+
+    @PutMapping("/{pessoaId}/{enderecoId}")
+    public ResponseEntity<Pessoa> setEnderecoPrincipal(@PathVariable("pessoaId") Long pessoaId, @PathVariable("enderecoId") Long enderecoId) {
+        service.setEnderecoPrincipal(pessoaId, enderecoId);
+        return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/{id}")
