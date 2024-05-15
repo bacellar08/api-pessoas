@@ -8,12 +8,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/pessoas")
 public class PersonController {
 
     @Autowired
     PessoaService service;
 
-    @GetMapping("/pessoas")
+    @GetMapping()
     public List<Pessoa> listaPessoas() {
         return service.listaPessoas();
     }
@@ -27,10 +28,6 @@ public class PersonController {
     @PostMapping
     public ResponseEntity<Pessoa> novaPessoa(@RequestBody Pessoa pessoa) {
 
-        for (Endereco endereco : pessoa.getEnderecos()) {
-            endereco.setPessoa(pessoa);
-
-        }
 
         Pessoa novaPessoa = service.criarPessoa(pessoa);
         return ResponseEntity.status(HttpStatus.CREATED).body(novaPessoa);

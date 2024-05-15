@@ -23,7 +23,18 @@ public class PessoaService {
     }
 
     public Pessoa criarPessoa(Pessoa pessoa) {
-        return repository.save(pessoa);
+
+        for (Endereco endereco : pessoa.getEnderecos()) {
+            endereco.setIdPessoa(pessoa);
+        }
+
+        Pessoa novaPessoa = repository.save(pessoa);
+
+        Endereco enderecoPrincipal = novaPessoa.getEnderecos().get(0);
+        enderecoPrincipal.setPrincipal(true);
+        novaPessoa.setIdEnderecoPrincipal(enderecoPrincipal.getId());
+
+        return repository.save(novaPessoa);
     }
 
     public Pessoa alterarPessoa(Pessoa pessoa) {

@@ -2,15 +2,18 @@ package com.pessoas.api.consultapessoas;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.io.Serializable;
 
 @Getter
 @Setter
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class Endereco {
+public class Endereco implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
@@ -23,9 +26,9 @@ public class Endereco {
 
 
     @ManyToOne
-    @JoinColumn(name="pessoa_id")
-    @JsonBackReference
-    public Pessoa pessoa;
+    @JoinColumn(name = "ID_PESSOA", nullable = false)
+    @JsonIgnore
+    public Pessoa idPessoa;
 
 
 }
