@@ -1,35 +1,25 @@
-package com.pessoas.api.consultapessoas;
+package com.pessoas.api.consultapessoas.model.dto;
 
 
-import jakarta.persistence.*;
+import com.pessoas.api.consultapessoas.model.Endereco;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
-
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
-@Entity
-public class Pessoa implements Serializable {
+@AllArgsConstructor
+public class PessoaDTO implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long id;
+    public Long key;
     public String nome;
     public LocalDate dataNascimento;
-
-    @OneToMany(mappedBy = "idPessoa", cascade = CascadeType.ALL)
     public List<Endereco> enderecos;
-
-    @Column(name = "ID_ENDERECO_PRINCIPAL")
     public Long idEnderecoPrincipal;
-
 }

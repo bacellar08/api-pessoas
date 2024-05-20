@@ -1,6 +1,6 @@
 package com.pessoas.api.consultapessoas.repository;
 
-import com.pessoas.api.consultapessoas.Pessoa;
+import com.pessoas.api.consultapessoas.model.Pessoa;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
